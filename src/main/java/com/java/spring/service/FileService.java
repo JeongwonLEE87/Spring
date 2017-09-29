@@ -50,33 +50,26 @@ public class FileService implements FileServiceInterface {
 				
 				String path = "";
 				// 개발 툴에서만 사용 할것!
-	//			path = "D:/GIT/Spring/src/main/webapp/" + path2;
+//				path = "D:/GIT/Spring/src/main/webapp/" + path2;
 				path = req.getSession().getServletContext().getRealPath("/") + path2;
 				System.out.println(path);
 				
 				File f = new File(path);
+				
 				if(f.exists()){
 					f = new File(path + name);
+					OutputStream out = new FileOutputStream(f);
+					out.write(bytes);
+					out.close();
+					
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("path", path2);
+					map.put("name", name);
+					map2 = fileAdd(map);
 				}
-				
-				OutputStream out = new FileOutputStream(f);
-				out.write(bytes);
-				out.close();
-				
-				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("path", path2);
-				map.put("name", name);
-				map2 = fileAdd(map);
 			} catch (IOException e) {
 				e.printStackTrace();
-			} finally {
-				// 개발 툴에서만 사용 할것!
-	//			try {
-	//				Thread.sleep(4000);
-	//			} catch (Exception e2) {
-	//				e2.printStackTrace();
-	//			}
-			} 
+			}
 		}
 		
 		return map2;

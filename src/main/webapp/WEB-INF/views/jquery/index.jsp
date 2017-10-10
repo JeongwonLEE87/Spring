@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>JQuery</title>
+	<style type="text/css">h1 {cursor: pointer;}</style>
 	<!-- Jquery 라이버리 추가하여 사용 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -43,7 +44,8 @@
 				
 				// body 태그에 내용을 추가 하는 방법은...
 				var text = "안녕!";
-				var tag = "<h1 onclick='hEvent();'>" + i + "안녕!</h1>";
+// 				var tag = "<h1 onclick='hEvent(this);'>" + i + "안녕!</h1>"; // JavaScript용
+				var tag = "<h1>" + i + "안녕!</h1>"; // JQuery용으로 변경
 				
 				// 글자만 넣는 방법 : text();
 // 				$("div").text(tag);
@@ -58,13 +60,29 @@
 				// prepend() 앞에 내용을 넣는 방법
 				$("div").prepend(tag);
 				
+				console.log("h1 클릭 이벤트 추가!");
+				$("h1").off(); // 이전 이벤트를 종료 하게 만든다.
+				$("h1").on("click", function(){ // 이벤트를 생성해 준다.
+					alert("JQuery로 선택되었습니다.");
+					console.log($(this).text());
+					$(this).text($(this).text() + " 선택 되었습니다.");
+				});
+				console.log($("h1").length);
+				
 				i++;
 			 });
 		 });
 		 console.log("종료");
 		 
-		 function hEvent(){
+		 function hEvent(attr){
 			 alert("h1 태그 선택");
+			 // 이벤트 처리는?
+			 // this의 정보 중에 속에 있는(innerHTML) 내용을 가져 올 수 있다.
+			 console.log(attr.innerHTML);
+			 // innerHTML를 이용하여 내용을 변경도 가능 하다.
+			 attr.innerHTML = attr.innerHTML + " 선택 되었습니다.";
+			 // document.getElementsByTagName("h1")[0].innerHTML 
+			 // (this) -> attr.innerHTML  // 위와 동일한 방법으로 처리 가능
 		 }
 	</script>
 </head>

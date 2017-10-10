@@ -45,7 +45,7 @@
 				// body 태그에 내용을 추가 하는 방법은...
 				var text = "안녕!";
 // 				var tag = "<h1 onclick='hEvent(this);'>" + i + "안녕!</h1>"; // JavaScript용
-				var tag = "<h1><input type='checkbox' class='checkbox'>" + i + "<span>안녕!" + i + "</span> <button type='button'>삭제</button></h1>"; // JQuery용으로 변경
+				var tag = "<h1><input type='checkbox'>" + i + "<span>안녕!" + i + "</span> <button type='button'>삭제</button></h1>"; // JQuery용으로 변경
 				
 				// 글자만 넣는 방법 : text();
 // 				$("div").text(tag);
@@ -80,12 +80,24 @@
 					 *******************************************************************/
 				});
 				
-				$("h1 input.checkbox").off();
-				$("h1 input.checkbox").on("click", function(){
-					alert("h1 체크박스 이벤트 입니다.");
-					var index = $("h1 input.checkbox").index(this);
-					console.log(index, $("h1 span").eq(index).text());
-					$("h1").eq(index).append("<input type='text' value='" + $("h1 span").eq(index).text() + "'>");
+				$("h1 input:checkbox").off();
+				$("h1 input:checkbox").on("click", function(){
+					// h1의 인덱스 값 가져 오기
+					var index = $("h1 input:checkbox").index(this);
+					// 선택된 h1 객체를 변수에 담기 (아래에서 공통으로 사용 하기 위하여 사용)
+					var h1 = $("h1").eq(index);
+					// 해당 체크박스 상태를 확인하기 위하여 if문 사용
+					if($(this).prop('checked')){
+						// span 태그에 있는 내용을 변수에 담기
+						var text = h1.find("span").text();
+						// 입력 받을 수 있도록 태그 추가
+						h1.append("<input type='text' value='" + text + "'>");
+					}else {
+						// 입력 받은 내용을 다시 span 태그 속으로 변경
+						h1.find("span").text(h1.find("input:text").val());
+						// 입력 받는 태그 화면에서 삭제
+						h1.find("input:text").remove();
+					}
 				});
 				
 				i++;

@@ -45,7 +45,7 @@
 				// body 태그에 내용을 추가 하는 방법은...
 				var text = "안녕!";
 // 				var tag = "<h1 onclick='hEvent(this);'>" + i + "안녕!</h1>"; // JavaScript용
-				var tag = "<h1><input type='checkbox'>" + i + "<span>안녕!" + i + "</span> <button type='button'>삭제</button></h1>"; // JQuery용으로 변경
+				var tag = "<h1><input type='checkbox' class='checkbox'>" + i + "<span>안녕!" + i + "</span> <button type='button'>삭제</button></h1>"; // JQuery용으로 변경
 				
 				// 글자만 넣는 방법 : text();
 // 				$("div").text(tag);
@@ -80,10 +80,10 @@
 					 *******************************************************************/
 				});
 				
-				$("h1 input").off();
-				$("h1 input").on("click", function(){
+				$("h1 input.checkbox").off();
+				$("h1 input.checkbox").on("click", function(){
 					alert("h1 체크박스 이벤트 입니다.");
-					var index = $("h1 input").index(this);
+					var index = $("h1 input.checkbox").index(this);
 					console.log(index, $("h1 span").eq(index).text());
 					$("h1").eq(index).append("<input type='text' value='" + $("h1 span").eq(index).text() + "'>");
 				});

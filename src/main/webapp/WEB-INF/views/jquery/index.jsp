@@ -45,7 +45,7 @@
 				// body 태그에 내용을 추가 하는 방법은...
 				var text = "안녕!";
 // 				var tag = "<h1 onclick='hEvent(this);'>" + i + "안녕!</h1>"; // JavaScript용
-				var tag = "<h1>" + i + "안녕!</h1>"; // JQuery용으로 변경
+				var tag = "<h1><input type='checkbox'>" + i + "<span>안녕!" + i + "</span> <button type='button'>삭제</button></h1>"; // JQuery용으로 변경
 				
 				// 글자만 넣는 방법 : text();
 // 				$("div").text(tag);
@@ -60,14 +60,33 @@
 				// prepend() 앞에 내용을 넣는 방법
 				$("div").prepend(tag);
 				
-				console.log("h1 클릭 이벤트 추가!");
-				$("h1").off(); // 이전 이벤트를 종료 하게 만든다.
-				$("h1").on("click", function(){ // 이벤트를 생성해 준다.
-					alert("JQuery로 선택되었습니다.");
-					console.log($(this).text());
-					$(this).text($(this).text() + " 선택 되었습니다.");
+// 				$("h1").off(); // 이전 이벤트를 종료 하게 만든다.
+// 				$("h1").on("click", function(){ // 이벤트를 생성해 준다.
+// 					alert("JQuery로 선택되었습니다.");
+// 					console.log($(this).text());
+// 					$(this).text($(this).text() + " 선택 되었습니다.");
+// 				});
+				
+				$("h1 button").off();
+				$("h1 button").on("click", function(){
+// 					$(this).remove(); // 자신를 지우는 행위를 하기 때문에 사용 불가.
+					var index = $("h1 button").index(this); // 선택자가 몇번째 인덱스인지를 구한다.
+					console.log(index);
+					$("h1").eq(index).remove(); // 구한 인덱스를 이용하여 h1 태그 모두 삭제를 한다.
+					/******************************************************************* 
+					 * 인덱스를 구하기 위한 JQuery 함수는 index() 이다.
+					 * 선택자가 배열로 되어 있기 때문에 구한 인덱스를 eq() 이용하여 원하는 내용을 선택 할 수 있다.
+					 * remove() 함수는 선택된 내용을 전체 지우는 행위를 한다.
+					 *******************************************************************/
 				});
-				console.log($("h1").length);
+				
+				$("h1 input").off();
+				$("h1 input").on("click", function(){
+					alert("h1 체크박스 이벤트 입니다.");
+					var index = $("h1 input").index(this);
+					console.log(index, $("h1 span").eq(index).text());
+					$("h1").eq(index).append("<input type='text' value='" + $("h1 span").eq(index).text() + "'>");
+				});
 				
 				i++;
 			 });

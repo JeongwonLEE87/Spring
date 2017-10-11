@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 		var newData = {"no": i, "text": text}; //하나의 행을 생성
 		storage.push(newData); //storage 배열 변수에 생성된 행을 추가 한다.
-		add(storage); //localStorage에 추가 하기 위하여 add() 호출
+		set(storage); //localStorage에 추가 하기 위하여 add() 호출
 		
 		createHtml(); //화면 생성!
 		$("#text").val(""); //입력하세요.라고 하는 input 내용의 값을 초기화 시키기 위한 부분
@@ -46,17 +46,25 @@ function createHtml(){
 				// 한줄평의 내용 부분를 입력 받을 수 있는 input 박스를 넣고 value 값으로 text 변수를 대입해 주는 부분
 			}else{ //체크를 풀었을때
 				text = tds.eq(2).find("input").val(); //한줄평의 내용부분의 input 박스의 값을 text 변수에 담기 위한 부분
-				tds.eq(2).text(text); //text 변수의 값을 한줄평의 위치에 내용으로 변경 하기 위한 부분 (input 박스는 삭제 됩니다.)
+//				tds.eq(2).text(text); //text 변수의 값을 한줄평의 위치에 내용으로 변경 하기 위한 부분 (input 박스는 삭제 됩니다.)
+				
+				var newData = storage[(storage.length - 1) - index];
+				newData.text = text;
+				storage[(storage.length - 1) - index] = newData; // {}
+				set(storage); //변경된 storage의 배열를 다시 localStorage로 적용 
+				createHtml(); //다시 변경된 내용 화면에 적용하기 위하여 1회 재귀를 사용한다.
 			}
 		});
 		
 		$("tbody button").off();
 		$("tbody button").on("click", function(){ // tbody 태그에 있는 button을 클릭했을때
 			var index = $("tbody button").index(this); //주소값을 this를 사용해서 찾아주고
-			storage.splice(index, 1);
-			update(storage);
+			console.log(storage.length, (storage.length - 1), index);
+			storage.splice((storage.length - 1) - index, 1); 
+			//배열의 갯수에서 -1 한 값으로 해당 인덱스값 추출한다.
+			set(storage); //변경된 storage의 배열를 다시 localStorage로 적용
 //			$("tbody tr").eq(index).remove(); //해당 주소에 맞는 tr 태그를 삭제시켜준다.
-			createHtml();
+			createHtml(); //다시 변경된 내용 화면에 적용하기 위하여 1회 재귀를 사용한다.
 		});
 	}
 }

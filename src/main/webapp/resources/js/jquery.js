@@ -6,16 +6,14 @@ var storage = [];
 var i = 1; // 순서의 값을 사용하기 위해 초기값을 1로 지정합니다.
 $(document).ready(function(){
 	createHtml(); //localStorage에서 데이터 가져와서 화면에 보여주기.
-	
 	$("#submit").on("click", function(){ //내용추가 버튼을 클릭시 이벤트 실행하는 함수
 		var text = $("#text").val(); // 입력하세요.라고 하는 input 내용의 값을 text 변수에 담아 놓기 위한 부분
-		console.log("#submit", i);
+
 		var newData = {"no": i, "text": text}; //하나의 행을 생성
 		storage.push(newData); //storage 배열 변수에 생성된 행을 추가 한다.
 		add(storage); //localStorage에 추가 하기 위하여 add() 호출
 		
 		createHtml(); //화면 생성!
-		i++; //순서값을 증가
 		$("#text").val(""); //입력하세요.라고 하는 input 내용의 값을 초기화 시키기 위한 부분
 	});
 });
@@ -31,11 +29,11 @@ function createHtml(){
 						'<td><button type="button">삭제</button> </td>' +
 				  '</tr>';
 		$("tbody").prepend(tag); // tbody 태그에 tag 변수에 저장된 값을 추가해줌
-		i = j;
-		console.log("createHtml", j, i);
 	}
 	
 	if(storage.length > 0){ // 이벤트를 storage의 값에 의해서 생성 할 것인지 판단한다.
+		i = storage.length + 1; //storage의 배열 최대값 보다 +1 값으로 i변수로 변경 하기.
+		
 		$("tbody input:checkbox").off(); // 이전 이벤트를 종료 하기 위한 부분
 		$("tbody input:checkbox").on("click", function(){
 			var index = $("tbody input:checkbox").index(this); //this를 사용하여 주소값을 index 변수에 저장함
@@ -55,7 +53,10 @@ function createHtml(){
 		$("tbody button").off();
 		$("tbody button").on("click", function(){ // tbody 태그에 있는 button을 클릭했을때
 			var index = $("tbody button").index(this); //주소값을 this를 사용해서 찾아주고
-			$("tbody tr").eq(index).remove(); //해당 주소에 맞는 tr 태그를 삭제시켜준다.
+			storage.splice(index, 1);
+			update(storage);
+//			$("tbody tr").eq(index).remove(); //해당 주소에 맞는 tr 태그를 삭제시켜준다.
+			createHtml();
 		});
 	}
 }

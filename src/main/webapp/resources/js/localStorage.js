@@ -18,7 +18,7 @@ function get(){ // localStorage에 getItem()를 이용하여 데이터 가져오
 }
 
 function update(data){ // localStorage에 setItem()를 이용하여 입력받은 데이터를 수정 부분
-	
+	localStorage.setItem("data", JSON.stringify(data)); //문자열로 변경
 }
 
 function remove(data){ // localStorage에 setItem()를 이용하여 데이터 삭제 후 변경 하는 부분

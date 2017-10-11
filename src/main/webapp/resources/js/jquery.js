@@ -66,5 +66,7 @@ function createHtml(){
 //			$("tbody tr").eq(index).remove(); //해당 주소에 맞는 tr 태그를 삭제시켜준다.
 			createHtml(); //다시 변경된 내용 화면에 적용하기 위하여 1회 재귀를 사용한다.
 		});
+	}else {
+		i = 1; // 새로고침이 없을 때 storage의 값이 0인 경우 초기값 설정
 	}
 }

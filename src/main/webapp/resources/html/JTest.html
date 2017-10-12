@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JQuery 함수 사용</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>클릭이벤트</h3>
+	<button type="button" id="add">클릭</button>
+	<script type="text/javascript">
+		var flag = true;
+		$("#add").click(function(){
+			if(flag){
+				$("#view1").text("추가 내용");	
+			}else {
+				$("#view1").text("");
+			}
+			flag = !flag;
+		});
+	</script>
+	<p id="view1"></p>
+</div>
+
+<div class="container">
+	<h3>체크박스 이벤트</h3>
+	<input type="checkbox" id="check"> 체크박스<br>
+	<script type="text/javascript">
+		$("#check").click(function(){
+			if($("#check").prop("checked")){
+				$("#view2").text("추가 내용");	
+			}else {
+				$("#view2").text("");
+			}
+		});
+	</script>
+	<p id="view2"></p>
+</div>
+
+<div class="container">
+	<h3>체크박스2 이벤트</h3>
+	<input type="checkbox" id="check2"> 체크박스<br>
+	<script type="text/javascript">
+		$("#check2").click(function(){
+			if($("#check2").prop("checked")){
+				$("#view3").html("<p>태그 내용 추가</p>");
+			}else {
+				$("#view3").empty();
+			}
+		});
+	</script>
+	<div id="view3"></div>
+</div>
+
+<div class="container">
+	<h3>체크박스3 이벤트</h3>
+	<input type="checkbox" id="check3"> 체크박스<br>
+	<script type="text/javascript">
+		$("#check3").click(function(){
+			if($("#check3").prop("checked")){
+				$("#view4").html("<p>태그 내용 추가</p>");
+			}else {
+				$("#view4").remove();
+			}
+		});
+	</script>
+	<div id="view4"></div>
+</div>
+</body>
+</html>

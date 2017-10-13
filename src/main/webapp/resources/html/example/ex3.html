@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>example3</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("table tr").click(function(){ // table 의 tr태그를 클릭 했을때 실행
+			var index = $("table tr").index(this); //table의 tr 부분의 인덱스를 변수로 선언
+			var ttr = $("table tr").eq(index).find("td"); //index에 해당하는 td를 찾아 ttr에 저장
+			var ttrdata = ""; //ttrdata의 값 초기화
+			for(var j=0; j < ttr.length; j++){	//인덱스 값의 길이만큼 반복문 실행 
+				ttrdata += ttr.eq(j).text() + " "; // ttrdata에 ttr에서 가져온 text값을 넣음 +=를 쓴이유는 td값이 여러개라서
+			}
+			$("#view").append(ttrdata + '<br>'); //view에 출력
+		});
+	});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="ex1.html">1문제</a></li>
+        <li><a href="ex2.html">2문제</a></li> 
+        <li class="active"><a href="ex3.html">3문제</a></li>
+        <li><a href="ex4.html">4문제</a></li>
+        <li><a href="ex5.html">5문제</a></li>
+        <li><a href="ex6.html">6문제</a></li>
+        <li><a href="ex7.html">7문제</a></li>
+		<li><a href="ex8.html">8문제</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 12일 JQuery 연습문제</h3>
+	<p>3. 고정 된 리스트(table)에서 하나의 행(tr)를 눌렀을때 화면에 선택 된 내용 모두 출력하기.</p>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>순번</th>
+	      <th>제목</th>
+	      <th>내용</th>
+	      <th>날짜</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>1</td>
+	      <td>테스트1</td>
+	      <td>내용 1 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>2</td>
+	      <td>테스트2</td>
+	      <td>내용 2 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>3</td>
+	      <td>테스트3</td>
+	      <td>내용 3 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>4</td>
+	      <td>테스트4</td>
+	      <td>내용 4 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	  </tbody>
+	</table>
+	
+	<div id="view">선택한 내용 보여주는 영역</div>
+</div>
+</body>
+</html>

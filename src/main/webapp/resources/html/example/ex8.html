@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>example8</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  
+
+
+	$(document).ready(function(){
+		$("#box").click(function(){ //체크 박스 클릭
+			$("#asd").toggle(); //id값 asd에 toggle 함수 부여
+		});
+	$("#as").on("click", function(){  //버튼클릭시
+		var tag = '<tr>' +
+		          '<td>' + $("#title").val() + '</td>' +    //태그에 값 넣기
+		          '<td>' + $("#contents").val() + '</td>' + "</tr>";
+	$("tbody").append(tag);
+	$("#title").val("");
+	$("#contents").val("");	          
+	
+	});
+			
+	});
+	
+	
+</script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="ex1.html">1문제</a></li>
+        <li><a href="ex2.html">2문제</a></li> 
+        <li><a href="ex3.html">3문제</a></li>
+        <li><a href="ex4.html">4문제</a></li>
+        <li><a href="ex5.html">5문제</a></li>
+        <li><a href="ex6.html">6문제</a></li>
+        <li><a href="ex7.html">7문제</a></li>
+		<li class="active"><a href="ex8.html">8문제</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 12일 JQuery 연습문제</h3>
+	<p>8. 체크박스를 선택 했을 경우 입력창(input)이 2개를 보여주고 첫번째는 제목을, 두번째는 내용을 입력 받아와서 화면에 리스트로 표현하기.<br> 단, 체크박스를 다시 누르면 입력창은 사라지게 할것.</p>
+	<input type="checkbox" id="box">체크박스<br> 
+	
+	<form>
+	  <div class="input-group">
+	    <div class="checkbox">
+		  <label></label>
+		</div>
+	  </div>
+	</form>
+</div>
+<div class="container">
+	<form = id="asd">
+	  <div class="form-group row">
+	    <div class="col-xs-1">
+	    	<label for="title">Title:</label>
+	    </div>
+	    <div class="col-xs-4">
+	    	<input type="text" class="form-control" id="title">
+	    </div>
+	    <div class="col-xs-1">
+	    	<label for="contents">Contents:</label>
+	    </div>
+	    <div class="col-xs-4">
+	    	<input type="text" class="form-control" id="contents">
+	    </div>
+	    <div class="col-xs-2">
+	    	<button type="button" id="as" class="btn btn-success">클릭</button>
+	    </div>
+	  </div>
+	</form>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>제목</th>
+	      <th>내용</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>example2</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){ //화면을 출력한 후 실행 
+		$("button").click(function(){ //버튼을 클릭하면 
+			var text = $("#value").val(); //text라는 변수에 값을 집어넣음 
+			var tag = "<li class='list-group-item'>"+text+"</li>" 
+			//text값을 리스트 안에 tag라는 변수에 넣음  
+			$(".list-group").prepend(tag); //리스트를 내림차순으로 출력 
+		});
+	});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="ex1.html">1문제</a></li>
+        <li class="active"><a href="ex2.html">2문제</a></li> 
+        <li><a href="ex3.html">3문제</a></li>
+        <li><a href="ex4.html">4문제</a></li>
+        <li><a href="ex5.html">5문제</a></li>
+        <li><a href="ex6.html">6문제</a></li>
+        <li><a href="ex7.html">7문제</a></li>
+		<li><a href="ex8.html">8문제</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 12일 JQuery 연습문제</h3>
+	<p>2. 입력 받은 값을 이용하여 button 클릭 시 화면에 리스트로 표현하기. 단, 내림차순(prepend())</p>
+	
+	<form>
+	  <div class="form-group row">
+	    <div class="col-xs-1">
+	    	<label for="value">Value:</label>
+	    </div>
+	    <div class="col-xs-10">
+	    	<input type="text" class="form-control" id="value">
+	    </div>
+	    <div class="col-xs-1">
+	    	<button type="button" class="btn btn-success">클릭</button>
+	    </div>
+	  </div>
+	</form>
+	
+	<ul class="list-group">
+	
+	</ul>
+</div>
+</body>
+</html>

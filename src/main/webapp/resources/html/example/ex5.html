@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>example5</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var flag = true; 
+		$(".btn-default").off();
+		$(".btn-default").on("click", function(){
+			if(flag){
+				$("#form").html("<div class='form-group row'>" +
+	    "<div class='col-xs-1'>" +
+	    	"<label for='value'>Value:</label>" +
+	    "</div>" +
+	    "<div class='col-xs-10'>" +
+	    	"<input type='text' class='form-control' id='value'>" + 
+	    "</div>" +
+	    "<div class='col-xs-1'>" +
+	    	"<button type='button' class='btn btn-success'>클릭</button>" +
+	    "</div>" +
+	  "</div>");
+				$(".btn-success").off();
+				$(".btn-success").on("click", function(){
+					var text = $("#value").val();
+					var tag = '<tr>'+
+				      '<td>' + text +'</td>' +
+					    '</tr>';
+					$("tbody").append(tag);
+				
+			});
+			}else{
+				$("#value").remove();
+				$(".btn-success").remove();
+				$("label").remove();
+				
+			}
+			flag = !flag;
+		});
+	});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="ex1.html">1문제</a></li>
+        <li><a href="ex2.html">2문제</a></li> 
+        <li><a href="ex3.html">3문제</a></li>
+        <li><a href="ex4.html">4문제</a></li>
+        <li class="active"><a href="ex5.html">5문제</a></li>
+        <li><a href="ex6.html">6문제</a></li>
+        <li><a href="ex7.html">7문제</a></li>
+		<li><a href="ex8.html">8문제</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 12일 JQuery 연습문제</h3>
+	<p>5. button 클릭 했을 경우 입력창(input)을 보여주고 1번 문제와 같은 방식으로 화면에 리스트 표현하기.<br> 단, button를 다시 누르면 입력창은 사라지게 할것.</p>
+	<form>
+	  <div class="form-group">
+	    <button type="button" class="btn btn-default">토글 이벤트</button>
+	  </div>
+	</form>
+</div>
+<div class="container">
+	<form id = "form">
+<!-- 	  <div class="form-group row">
+	    <div class="col-xs-1">
+	    	<label for="value">Value:</label>
+	    </div>
+	    <div class="col-xs-10">
+	    	<input type="text" class="form-control" id="value">
+	    </div>
+	    <div class="col-xs-1">
+	    	<button type="button" class="btn btn-success">클릭</button>
+	    </div>
+	  </div> -->
+	</form>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>내용</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	   <!--  <tr>
+	      <td>테스트</td>
+	    </tr> -->
+	  </tbody>
+	</table>
+</div>
+</body>
+</html>

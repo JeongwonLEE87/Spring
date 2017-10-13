@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>example4</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("tbody tr").click(function(){ // tbody 태그 속 tr태그를 클릭했을 때 실행되는 기능
+			var td = $(this).find("td"); // tr태그 속에서 선택자로 사용한 this는 선택된 자기 자신이기 때문에 find()함수를 사용해 td태그를 
+			//찾고 변수에 삽입한다.
+			$(td).remove(); // 선택자에 변수를 넣어서 remove()함수를 이용해 삭제한다.
+		});
+	});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">JQuery Example</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="ex1.html">1문제</a></li>
+        <li><a href="ex2.html">2문제</a></li> 
+        <li><a href="ex3.html">3문제</a></li>
+        <li class="active"><a href="ex4.html">4문제</a></li>
+        <li><a href="ex5.html">5문제</a></li>
+        <li><a href="ex6.html">6문제</a></li>
+        <li><a href="ex7.html">7문제</a></li>
+		<li><a href="ex8.html">8문제</a></li>	
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	<h3>10월 12일 JQuery 연습문제</h3>
+	<p>4. 고정 된 리스트(table)에서 하나의 행(tr)를 눌렀을때 선택 된 내용 모두 삭제하기.</p>
+	
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>순번</th>
+	      <th>제목</th>
+	      <th>내용</th>
+	      <th>날짜</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>1</td>
+	      <td>테스트1</td>
+	      <td>내용 1 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>2</td>
+	      <td>테스트2</td>
+	      <td>내용 2 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>3</td>
+	      <td>테스트3</td>
+	      <td>내용 3 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	    <tr>
+	      <td>4</td>
+	      <td>테스트4</td>
+	      <td>내용 4 테스트</td>
+	      <td>2017-10-12</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+</body>
+</html>

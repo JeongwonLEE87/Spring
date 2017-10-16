@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>화면 전환</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var hash = location.hash; // url에서 hash값 가져오기.
+		if(hash == ""){
+			hash = "#img1"; // hash에 값이 없을때 초기값 설정
+		}
+		$("button").on("click", function(){
+			hash = "#img" + ($("button").index(this) + 1); // hash 정보 추가
+			location.hash = hash; // url에 hash 정보 변경
+			loadHTML(); // 화면 전환
+		});
+		
+		function loadHTML(){
+			var url = "/spring/resources/html/1016/" + hash.substr(1, hash.length) + ".html"; // url 주소 생성
+			$("section").load(url); 
+			// 특정 url에서 가져온 데이터(html)를 section 태그 속에 넣기.
+		}
+		loadHTML(); // 첫 시작 시 적용
+	});
+</script>
+</head>
+<body>
+	<div>
+		<button type="button">img1</button>
+		<button type="button">img2</button>
+		<button type="button">img3</button>
+		<button type="button">img4</button>
+	</div>
+	<section></section>
+</body>
+</html>

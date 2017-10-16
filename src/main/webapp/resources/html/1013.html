@@ -9,28 +9,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("button:button").on("click", function(){
+		$("button:button").on("click", function(){ // 버튼을 클릭했을 시
 			if($(this).text() == "추가" && $("#text").val() != ""){
+				// 버튼 텍스트값이 추가이고, 텍스트박스의 값이 빈공간이 아닐 때
 				$("tbody").append('<tr><td><input type="checkbox"></td><td>' + ($("tbody tr").length + 1) + '</td><td>' + $("#text").val() + '</td></tr>');
+				// tbody에 체크박스 + 넘버(tr길이+1) + 텍스트의 값을 추가한다.
 			}else if($(this).text() == "수정" && -1 < $("tbody tr input:checkbox").index($("tbody tr input:checkbox:checked"))){
+				// 버튼 텍스트의 값이 수정이고, 인덱스의 오류가 -1이기 때문에 -1초과인 체크박스중 선택된 체크박스의 인덱스를 구한다.
 				$("tbody tr").eq($("tr input:checkbox").index($("tbody tr input:checkbox:checked"))).find("td").eq(2).text($("#text").val());
+				// 선택된 체크박스의 인덱스를 구하고 그아래 td를 찾고 3번째 배열에 텍스트의 값을 넣는다.
 				$("input:checkbox").prop("checked",false);
+				// 모든 체크박스를 false로 변경한다.
 			}else if($(this).text() == "삭제" && -1 < $("tbody tr input:checkbox").index($("tbody tr input:checkbox:checked"))){
+				// 버튼 텍스트값이 삭제이고 인덱스의 오류가 -1이기 때문에 -1초과인 체크박스중 선택된 체크박스의 인덱스를 구한다.
 				$("tbody tr").eq($("tr input:checkbox").index($("tbody tr input:checkbox:checked"))).remove();
-			}else {
+				// 체크박스중 선택된 체크박스의 인덱스를 구하고 그놈을 삭제한다.
+			}else { // 예외 처리불가
 				alert($(this).text() + " 이벤트를 처리 할 수 없습니다.");
 				return false;
 			}
 			$("input:checkbox").off().click(function(){
-				if($(this).prop("checked")){
-					$("input:checkbox").prop("checked",false);
-					$(this).prop("checked",true);
+				// 체크박스 중복 안돼
+				if($(this).prop("checked")){ // 현재 선택한 체크박스가 true인지 확인
+					$("input:checkbox").prop("checked",false); //모든 체크박스 false로변경
+					$(this).prop("checked",true); // 현재 선택한 체크박스만 true로 변경
 					$("#text").val($(this).closest("tr").find("td").eq(2).text());
-				}else{
+					// 텍스트박스 위에 tr에 td를 찾고 3번째 배열에 텍스트 값을 가져온다
+				}else{ // 모든 체크박스 false로 변경
 					$("input:checkbox").prop("checked",false);
 				}
 			});
-			$("#text").val("");
+			$("#text").val(""); // 텍스트값 초기화
 		});
 	});
 </script>

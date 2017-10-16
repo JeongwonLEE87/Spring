@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <title>단일화면</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/spring/resources/js/html2canvas.js"></script>
+<!-- <script src="/spring/resources/js/html2canvas.js"></script> -->
+<!-- <script type="text/javascript" src="http://jsgetip.appspot.com"></script> -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		var hash = location.hash; // url 주소 중 마지막 부분에 #~~로 되어 있는 부분 가져오기.
@@ -28,21 +29,21 @@
 		}
 		htmlLoad(); // div 화면에 적용 함수 호출
 		
-		$("button").on("click", function(){
-			// html2canvas.js 라이버리용 함수 호출
-			// 호출 방법 : html2canvas(대상, 옵션)
-			html2canvas($("body"), {
-				onrendered: function(canvas){ 
-					// canvas가 특정 대상의 내용을 데이터로 가져 왔을때 발생하는 함수
-					var img = canvas.toDataURL(); 
-					// toDataURL() 가져온 데이터를 주소값으로 변경 하는 부분
-					$("div").html("<img src='" + img + "'>");
-					// 특정 위치에 화면으로 표현 하는 부분
-				},
-				width: 300,
-				height: 300
-			});
-		});
+// 		$("button").on("click", function(){
+// 			// html2canvas.js 라이버리용 함수 호출
+// 			// 호출 방법 : html2canvas(대상, 옵션)
+// 			html2canvas($("body"), {
+// 				onrendered: function(canvas){ 
+// 					// canvas가 특정 대상의 내용을 데이터로 가져 왔을때 발생하는 함수
+// 					var img = canvas.toDataURL(); 
+// 					// toDataURL() 가져온 데이터를 주소값으로 변경 하는 부분
+// 					$("div").html("<img src='" + img + "'>");
+// 					// 특정 위치에 화면으로 표현 하는 부분
+// 				},
+// 				width: 300,
+// 				height: 300
+// 			});
+// 		});
 	});
 </script>
 </head>
@@ -50,7 +51,8 @@
 	<a href="#page1">page1</a>
 	<a href="#page2">page2</a>
 	<a href="#page3">page3</a>
-	<button type="button">화면 저장</button>
+<!-- 	<button type="button">화면 저장</button> -->
+<!-- 	<button type="button" onclick="alert(ip());">ip가져오기</button> -->
 	<hr>
 	<div></div>
 </body>

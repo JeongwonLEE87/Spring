@@ -6,38 +6,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var hash = location.hash; 
-		if(hash == ""){
+		var hash = location.hash; // url 주소 중 마지막 부분에 #~~로 되어 있는 부분 가져오기.
+		if(hash == ""){ // #으로 되어 있는 주소가 없다면 고정 값으로 변경
 			hash = "#page1";	
 		}
-// 		console.log(hash);
-// 		$("button").on("click",function(){
-// 			$.ajax({
-// 			  url: "/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html"
-// 			}).done(function(data) {
-// 			  console.log(data);
-// 			  $("div").html(data);
-// 			});
-
-// 			$.get("/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html", 
-// 					function( data ) {
-// 						$("div").html(data);
-// 					});
-			
-// 			$( "div" ).load("/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html");
-// 		});
-
 		$("a").on("click", function(){
-// 			console.log($(this).attr("href"));
-			hash = $(this).attr("href"); 
-			htmlLoad();
+			hash = $(this).attr("href"); // a 태그 선택 시 속성값인 href의 값을 hash 변수에 넣기.
+			htmlLoad(); // div 화면에 적용 함수 호출
 		});
-		
 		function htmlLoad(){
-			$( "div" ).load("/spring/resources/html/spa/" + hash.substr(1, hash.length) + ".html" + hash);	
+			// 가져 올 화면 정보 주소 생성
+			var url = "/spring/resources/html/spa/" + hash.substr(1, hash.length) + ".html";
+			// div 태그 속에 url에서 가져온 데이터 넣기.
+			$( "div" ).load(url, function(d, s, x){
+				if(s == "error"){ // 오류 발생 시 (404, 500) 등등...
+					alert("잘 못 된 주소를 입력하셨습니다. 처음으로 돌아 가기.");
+					location.href = "SPA.html"; // 화면 다시 읽어 오게 만든다.
+				}
+			});
 		}
-		
-		htmlLoad();
+		htmlLoad(); // div 화면에 적용 함수 호출
 	});
 </script>
 </head>

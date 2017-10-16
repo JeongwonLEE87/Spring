@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>단일화면</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var hash = location.hash; 
+		if(hash == ""){
+			hash = "#page1";	
+		}
+// 		console.log(hash);
+// 		$("button").on("click",function(){
+// 			$.ajax({
+// 			  url: "/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html"
+// 			}).done(function(data) {
+// 			  console.log(data);
+// 			  $("div").html(data);
+// 			});
+
+// 			$.get("/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html", 
+// 					function( data ) {
+// 						$("div").html(data);
+// 					});
+			
+// 			$( "div" ).load("/spring/resources/html/spa/page" + ($("button").index(this) + 1) + ".html");
+// 		});
+
+		$("a").on("click", function(){
+// 			console.log($(this).attr("href"));
+			hash = $(this).attr("href"); 
+			htmlLoad();
+		});
+		
+		function htmlLoad(){
+			$( "div" ).load("/spring/resources/html/spa/" + hash.substr(1, hash.length) + ".html" + hash);	
+		}
+		
+		htmlLoad();
+	});
+</script>
+</head>
+<body>
+	<a href="#page1">page1</a>
+	<a href="#page2">page2</a>
+	<a href="#page3">page3</a>
+	<hr>
+	<div></div>
+</body>
+</html>

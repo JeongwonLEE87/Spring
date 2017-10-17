@@ -21,7 +21,7 @@
 <script>
 $(document).ready(function(){
 	var data = []; // 데이터 담을 배열 변수 선언
-	var page = 3; // 현재 페이지 값
+	var page = 1; // 현재 페이지 값
 	var viewRow = 10; // 화면에 보여질 행 갯수
 	var totCnt = 0; // 데이터 전체 객수
 	
@@ -46,11 +46,18 @@ $(document).ready(function(){
 		$("a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
 			// a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
 			page = $(this).text();
-			initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
+			setTimeout(function(){
+				initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
+			}, 100);
 		});
 	}
 	
 	function initData(){ // 디비에서 데이터 가져오기 위한 함수
+		
+		var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
+		if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
+			page = hash.substr(1, hash.length);
+		}
 		
 		var end = (viewRow * page); // 10 * 2 = 20 
 		var start = (end - viewRow); // 20 - 10 = 10

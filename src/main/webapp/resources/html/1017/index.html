@@ -4,22 +4,31 @@
 <meta charset="UTF-8">
 <title>계시판</title>
 <style>
+	div {
+		text-align: center;
+	}
 	a {
 		display: inline-block;
 		width: 20px;
+	}
+	.bg {
+		background-color: green;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
 		var data = []; // 데이터 담을 배열 변수 선언
-		var page = 2; // 현재 페이지 값
+		var page = 1; // 현재 페이지 값
 		var viewRow = 10; // 화면에 보여질 행 갯수
 		function init(row){ // 데이터 초기값 생성 함수
+			var hash = location.hash; // a 태그의 이벤트로 발생한 hash 값을 가져온다.
+			if(hash != ""){ // hash 값이 있을 경우 page 변수의 값으로 사용한다.
+				page = hash.substr(1, hash.length);
+			}
 			for(var i = 0; i < row; i++){ // 데이터 행의 값 만큼 for문를 이용하여 담기
 				data.push({"no":i,"title":"Test"+i});
 			}
-			console.log(data.length, data);
 			createHtml(); // 화면에 출력할 함수 호출
 			createPaging(); // 페이지 링크 생성 함수 호출
 		}
@@ -27,6 +36,9 @@
 		function createHtml(){ // ul 태그 속에 li 태그 넣기 위한 함수
 			var end = (viewRow * page); // 10 * 2 = 20 
 			var start = (end - viewRow); // 20 - 10 = 10
+			if(end > data.length){ // for문의 끝 지점이 데이터의 전체 행 보다 클 경우 데이터의 행 갯수로 변경이 필요하다.
+				end = data.length;
+			}
 			$("ul").empty(); // ul 태그의 자식들를 초기화가 필요하다.
 			for(; start < end; start++){
 				$("ul").append("<li>no: " + data[start].no + ", title: " + data[start].title + "</li>")
@@ -39,6 +51,17 @@
 			for(var i = 0; i < paging; i++){
 				$("div").append("<a href='#" + (i + 1) + "'>" + (i + 1) + "</a>")
 			}
+			
+			$("a").eq(page - 1).addClass("bg"); 
+			// page의 변수를 이용하여 a 태그의 인덱스 값을 구하여 bg 클래스를 적용한다.
+			
+			$("a").off().on("click", function(){ // 페이지 전환 이벤트를 작성 한다.
+				// a 태그 중에 몇번째 페이지인지 알면 리스트 화면를 다시 보여 줄 수 있다. page 변수 활용 할것!
+				page = $(this).text();
+				createHtml();
+				$("a").removeClass("bg");
+				$(this).addClass("bg");
+			});
 		}
 		init(100); // 초기값 생성 함수 호출
 	});
@@ -46,6 +69,6 @@
 </head>
 <body>
 	<ul></ul> <!-- 화면에 보여질 리스트 태그 부모 -->
-	<div></div>
+	<div></div> <!-- 페이지 링크 리스트 -->
 </body>
 </html>

@@ -21,6 +21,9 @@ public class PagingService implements PagingServiceInterface {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("data", list);
 		
+		HashMap<String, Object> totCnt = pdi.totCnt();
+		map.put("totCnt", totCnt);
+		
 		return map;
 	}
 

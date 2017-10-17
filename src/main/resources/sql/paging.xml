@@ -6,4 +6,7 @@
 	<select id="select" parameterType="hashmap" resultType="hashmap">
 		select * from user limit #{start}, #{viewRow}
 	</select>
+	<select id="totCnt" resultType="hashmap">
+		select count(*) as tot from user
+	</select>
 </mapper>

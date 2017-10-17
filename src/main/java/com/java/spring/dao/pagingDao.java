@@ -19,4 +19,9 @@ public class pagingDao implements pagingDaoInterface {
 		return session.selectList("paging.select", param);
 	}
 
+	@Override
+	public HashMap<String, Object> totCnt() {
+		return session.selectOne("paging.totCnt");
+	}
+
 }

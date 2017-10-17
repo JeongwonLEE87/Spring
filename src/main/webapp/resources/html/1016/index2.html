@@ -10,8 +10,25 @@
 		if(hash == ""){
 			hash = "#img1"; // hash에 값이 없을때 초기값 설정
 		}
+		
+		var pageIndex = 4; // 총 4개의 화면의 인덱스의 값
+		
 		$("button").on("click", function(){
-			hash = "#img" + ($("button").index(this) + 1); // hash 정보 추가
+			var i = hash.substr(4, hash.length);
+			if($("button").index(this) == 0){ // 왼쪽
+				if(i == 1){
+					i = pageIndex;
+				}else {
+					i--;
+				}
+			}else if($("button").index(this) == 1){ // 오른쪽
+				if(i == pageIndex){
+					i = 1;
+				}else{
+					i++;
+				}
+			}
+			hash = "#img" + i; // hash 정보 추가
 			location.hash = hash; // url에 hash 정보 변경
 			loadHTML(); // 화면 전환
 		});
@@ -27,10 +44,8 @@
 </head>
 <body>
 	<div>
-		<button type="button">img1</button>
-		<button type="button">img2</button>
-		<button type="button">img3</button>
-		<button type="button">img4</button>
+		<button type="button">왼쪽</button>
+		<button type="button">오른쪽</button>
 	</div>
 	<section></section>
 </body>

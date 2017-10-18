@@ -48,7 +48,7 @@ $(document).ready(function(){
 			page = $(this).text();
 			setTimeout(function(){
 				initData(); // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
-			}, 100);
+			}, 100); // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
 		});
 	}
 	

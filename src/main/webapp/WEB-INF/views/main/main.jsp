@@ -18,6 +18,22 @@
 		$(".row div").on("click", function(){
 			window.open($(this).find("img").attr("src"));
 		});
+		
+		$("form").on("submit", function( event ) {
+			  event.preventDefault();
+			  $.ajax({
+						url:"Login", 
+						data: $( this ).serialize()
+				}).done(function(result){
+					console.log(result);
+					$("#loginPop").modal("hide");
+					if(result.stat){
+						alert(result.email + " 로그인이 성공하였습니다.");
+					}else{
+						alert("입력하신 [" + result.email + "] 정보가 잘못되었습니다.");
+					}
+				});
+		});
 	});
 </script>
 </head>
@@ -41,8 +57,8 @@
         <li><a href="#">Page 3</a></li> 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li data-toggle="modal" data-target="#signPop"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li data-toggle="modal" data-target="#loginPop"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
@@ -56,6 +72,58 @@
   	<div class="col-sm-6" id="img2"></div>
   	<div class="col-sm-6" id="img3"></div>
   	<div class="col-sm-6" id="img4"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="loginPop" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">로그인</h4>
+      </div>
+      <div class="modal-body">
+		<form>
+		  <div class="form-group">
+		    <label for="email">Email address:</label>
+		    <input type="email" class="form-control" id="email" name="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Password:</label>
+		    <input type="password" class="form-control" id="pwd" name="pwd">
+		  </div>
+		  <button type="submit" class="btn btn-success">login</button>
+		</form>
+      </div>
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!--       </div> -->
+    </div>
+    
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="signPop" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">회원 가입</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
   </div>
 </div>
 

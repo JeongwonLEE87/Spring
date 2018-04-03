@@ -129,8 +129,8 @@
  	  3. xml 파일에 <aop:aspectj-autoproxy> 설정
 
 ##### Aspect Class 어노테이션 종류
- 	  - @Pointcut        : AOP가 실행 될 영역 선언
- 	  - @Around          : 호출 된 메소드가 실행 부분 제어
+    - @Pointcut        : AOP가 실행 될 영역 선언
+    - @Around          : 호출 된 메소드가 실행 부분 제어
     - @Before          : 호출 된 메소드가 실행 전 제어
     - @AfterReturning  : 호출 된 메소드가 실행 후 리턴값 까지 제어
     - @AfterThrowing   : 호출 된 메소드가 실행 후 오류까지 제어
